@@ -306,7 +306,7 @@ button:focus-visible {
 #algorithm-container {
   display: grid;
   place-items: center;
-  min-height: 280px;
+  min-height: 500px;
   border: 1px dashed hsl(0 0% 0% / 0.12);
   border-radius: 16px;
   padding: 16px;
