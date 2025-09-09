@@ -2,6 +2,15 @@ const container = document.getElementById("algorithm-container");
 const startBtn = document.getElementById("btn-start");
 const resetBtn = document.getElementById("btn-reset");
 
+startBtn?.addEventListener("click", () => {
+    container.innerHTML = `<div role="status"><em>Starting simulation…</em></div>`;
+    // Montem aqui o Algoritmo
+});
+
+resetBtn?.addEventListener("click", () => {
+    container.innerHTML = `<div><code>#algorithm-container</code></div>`;
+});
+
 class Process {
     constructor(id, time) {
         this.id = id
@@ -58,22 +67,48 @@ function draw() {
             fill(255, 0, 255)
         else
             fill(255)
-        rect(x, height - 100 * baseSize, 100 * baseSize, 100 * baseSize)
+        rect(x, height - 100 * baseSize, 100 * baseSize, 100 * baseSize,6)
         fill(0)
-        text(`P${i}\n${i.toString(2).padStart(3, "0")}`, x, height - 100 * baseSize)
+        fill(255);
+        text(`P${i}`, x, height - 130 * baseSize);
+
+        
+        const bits = i.toString(2).padStart(3, "0");
+
+
+    for (let b = 0; b < 3; b++) {
+        const bit = bits[b];
+        if (bit === "0") fill(0, 255, 0);      
+        else fill(255, 0, 0);                  
+
+        const size = 16 * baseSize;
+        const spacing = 22 * baseSize;
+        const bx = x + (b - 1) * spacing;
+        const by = height - 80 * baseSize;
+        rect(bx, by, size, size, 4);
+}
     }
 
     fill(255, 255, 0)
-    rect(width / 2, height - 250 * baseSize, width * 0.741, 100 * baseSize)
+    rect(width / 2, height - 250 * baseSize, width * 0.741, 100 * baseSize,6)
     fill(0, 0, 255)
     const q = requests.map((v) => v.id)
     q.unshift(p)
     text(`Fila: ${p === -1 ? "vazia" : q}`, width / 2, height - 250 * baseSize)
 
+    fill(127)
+    rect(100 * baseSize, 150 * baseSize, 100 * baseSize, 200 * baseSize,6)
+
     if (p === -1) {
+        
+        fill(0, 255, 0)
+        circle(100 * baseSize, 200 * baseSize, 75 * baseSize)
         switchToGreen()
     } else {
-        switchToRed()
+        
+        fill(255, 0, 0)
+        circle(100 * baseSize, 100 * baseSize, 75 * baseSize)
+        switchToRed()     
 
         dw = width / 3
 
@@ -82,12 +117,15 @@ function draw() {
             const bit = (p << i) & 4
             const x = dw * (i - 1) + width / 2
             if (bit) {
-                rect(x, height - 500 * baseSize, 100 * baseSize, 400 * baseSize)
+                rect(x, height - 500 * baseSize, 100 * baseSize, 400 * baseSize,6)
+                
+ 
             }
         }
-    }
-}
+    }   
 
+
+}
 const redLamp = document.querySelector('.lamp.red');
 const yellowLamp = document.querySelector('.lamp.yellow');
 const greenLamp = document.querySelector('.lamp.green');
