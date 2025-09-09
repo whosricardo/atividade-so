@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutual Exclusion · Stop Lights</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <section class="container">
+    <section class="glass-window" role="region">
+      <section class="titlebar" aria-label="Window chrome">
+        <section class="traffic" aria-hidden="true">
+          <span class="light red"></span>
+          <span class="light yellow"></span>
+          <span class="light green"></span>
+        </section>
+        <section class="brand" aria-label="Branding">
+          <span class="mark" aria-hidden="true"></span>
+          <div>
+            <div class="title">Mutual Exclusion · Stop Lights</div>
+            <div class="subtitle">CESAR School Project - Software Infrastructure</div>
+          </div>
+        </section>
+      </section>
+
+      <header class="hero container" aria-label="Intro"></header>
+
+      <section class="stage">
+        <aside class="signal left" aria-hidden="true">
+          <div class="lamp red on"></div>
+          <div class="lamp yellow"></div>
+          <div class="lamp green"></div>
+        </aside>
+        <aside class="signal right" aria-hidden="true">
+          <div class="lamp red"></div>
+          <div class="lamp yellow"></div>
+          <div class="lamp green on"></div>
+        </aside>
+
+        <section class="simulator-card">
+          <section class="sim-toolbar">
+            <span class="title">Simulation</span>
+            <section class="actions">
+              <button type="button" class="ghost" id="btn-reset" title="Reset state">Reset</button>
+              <button type="button" class="primary" id="btn-start" title="Start simulation">Start</button>
+            </section>
+          </section>
+          <section class="sim-body">
+            <section id="algorithm-container" aria-label="Algorithm container">
+              <div>
+                <code>#algorithm-container</code>
+              </div>
+            </section>
+          </section>
+        </section>
+      </section>
+
+      <footer class="container">
+        · Pure CSS · <br> <small><code>i like it, don't judge</code></small> 
+      </footer>
+    </section>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
