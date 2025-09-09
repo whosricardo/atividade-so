@@ -2,14 +2,6 @@ const container = document.getElementById("algorithm-container");
 const startBtn = document.getElementById("btn-start");
 const resetBtn = document.getElementById("btn-reset");
 
-startBtn?.addEventListener("click", () => {
-    container.innerHTML = `<div role="status"><em>Starting simulation…</em></div>`;
-    // Montem aqui o Algoritmo
-});
-
-resetBtn?.addEventListener("click", () => {
-    container.innerHTML = `<div><code>#algorithm-container</code></div>`;
-});
 
 class Process {
     constructor(id, time) {
@@ -96,18 +88,9 @@ function draw() {
     q.unshift(p)
     text(`Fila: ${p === -1 ? "vazia" : q}`, width / 2, height - 250 * baseSize)
 
-    fill(127)
-    rect(100 * baseSize, 150 * baseSize, 100 * baseSize, 200 * baseSize,6)
-
     if (p === -1) {
-        
-        fill(0, 255, 0)
-        circle(100 * baseSize, 200 * baseSize, 75 * baseSize)
         switchToGreen()
     } else {
-        
-        fill(255, 0, 0)
-        circle(100 * baseSize, 100 * baseSize, 75 * baseSize)
         switchToRed()     
 
         dw = width / 3
