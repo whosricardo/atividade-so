@@ -158,10 +158,6 @@ body::before {
   margin-top: 4px;
 }
 
-header.hero {
-  padding: 28px 18px 8px;
-}
-
 .stage {
   position: relative;
   padding: 28px;
@@ -170,27 +166,21 @@ header.hero {
 }
 
 .signal {
-  position: absolute;
-  top: 18px;
-  width: 72px;
-  height: 204px;
+  position: static;
+  top: auto;
+  width: auto;
+  height: auto;
   border-radius: 16px;
   border: 1px solid hsl(var(--border));
-  background: linear-gradient(180deg, hsl(var(--glass)), transparent 60%);
+  background: linear-gradient(90deg, hsl(var(--glass)), transparent 60%);
   backdrop-filter: blur(10px);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  padding: 10px;
-}
-
-.signal.left {
-  left: 18px;
-}
-
-.signal.right {
-  right: 18px;
+  gap: 10px;
+  padding: 10px 16px;
+  margin: 0 auto;
 }
 
 .lamp {

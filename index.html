@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mutual Exclusion · Stop Lights</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.min.js"></script>
 </head>
 <body>
@@ -25,32 +25,17 @@
         </section>
       </section>
 
-      <header class="hero container" aria-label="Intro"></header>
-
       <section class="stage">
-        <aside class="signal left" aria-hidden="true">
-          <div class="lamp red on"></div>
-          <div class="lamp yellow"></div>
-          <div class="lamp green"></div>
-        </aside>
-        <aside class="signal right" aria-hidden="true">
-          <div class="lamp red"></div>
-          <div class="lamp yellow"></div>
-          <div class="lamp green on"></div>
-        </aside>
-
         <section class="simulator-card">
-          <section class="sim-toolbar">
-            <span class="title">Simulation</span>
-            <section class="actions">
-              <button type="button" class="ghost" id="btn-reset" title="Reset state">Reset</button>
-              <button type="button" class="primary" id="btn-start" title="Start simulation">Start</button>
+            <section class="sim-toolbar">
+              <aside class="signal">
+                <div class="lamp red on"></div>
+                <div class="lamp yellow"></div>
+                <div class="lamp green"></div>
+              </aside>
             </section>
-          </section>
           <section class="sim-body">
-            <section id="algorithm-container" aria-label="Algorithm container">
-   
-            </section>
+            <section id="algorithm-container" aria-label="Algorithm container"> </section>
           </section>
         </section>
       </section>

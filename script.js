@@ -2,15 +2,6 @@ const container = document.getElementById("algorithm-container");
 const startBtn = document.getElementById("btn-start");
 const resetBtn = document.getElementById("btn-reset");
 
-startBtn?.addEventListener("click", () => {
-    container.innerHTML = `<div role="status"><em>Starting simulation…</em></div>`;
-    // Montem aqui o Algoritmo
-});
-
-resetBtn?.addEventListener("click", () => {
-    container.innerHTML = `<div><code>#algorithm-container</code></div>`;
-});
-
 class Process {
     constructor(id, time) {
         this.id = id
@@ -79,14 +70,10 @@ function draw() {
     q.unshift(p)
     text(`Fila: ${p === -1 ? "vazia" : q}`, width / 2, height - 250 * baseSize)
 
-    fill(127)
-    rect(100 * baseSize, 150 * baseSize, 100 * baseSize, 200 * baseSize)
     if (p === -1) {
-        fill(0, 255, 0)
-        circle(100 * baseSize, 200 * baseSize, 75 * baseSize)
+        switchToGreen()
     } else {
-        fill(255, 0, 0)
-        circle(100 * baseSize, 100 * baseSize, 75 * baseSize)
+        switchToRed()
 
         dw = width / 3
 
@@ -99,4 +86,20 @@ function draw() {
             }
         }
     }
+}
+
+const redLamp = document.querySelector('.lamp.red');
+const yellowLamp = document.querySelector('.lamp.yellow');
+const greenLamp = document.querySelector('.lamp.green');
+
+function switchToRed() {
+  redLamp.classList.add('on');
+  yellowLamp.classList.remove('on');
+  greenLamp.classList.remove('on');
+}
+
+function switchToGreen() {
+  redLamp.classList.remove('on');
+  yellowLamp.classList.remove('on');
+  greenLamp.classList.add('on');
 }
