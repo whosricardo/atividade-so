@@ -323,3 +323,22 @@ footer {
     display: none;
   }
 }
+
+
+.btn-troca {
+  display: inline-block;
+  margin: 20px auto;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn-voltar:hover {
+  background: linear-gradient(135deg, #5aa0f2, #4686c5);
+  transform: scale(1.05);
+}

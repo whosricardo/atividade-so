@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mutual Exclusion · Stop Lights</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.min.js"></script>
+</head>
+<body>
+  <section class="container">
+    <section class="glass-window" role="region">
+      <section class="titlebar" aria-label="Window chrome">
+        <section class="traffic" aria-hidden="true">
+          <span class="light red"></span>
+          <span class="light yellow"></span>
+          <span class="light green"></span>
+        </section>
+        <section class="brand" aria-label="Branding">
+          <span class="mark" aria-hidden="true"></span>
+          <div>
+            <div class="title">Mutual Exclusion · Stop Lights</div>
+            <div class="subtitle">CESAR School Project - Software Infrastructure</div>
+          </div>
+        </section>
+      </section>
+
+
+      <article class="content">
+        <section>
+          <h2>1. IPC</h2>
+          <p>
+            IPC são bastante comuns em qualquer computador moderno, na atual filosofia de sistemas operacionais, temos vários processos rodando ao mesmo tempo e dentro de um processo podemos ter várias threads.
+          </p>
+          <p>
+            Cada processo pode tentar bloquear ou acessar recursos que um outro processo quer usar. Imagine quando um mesmo processo tem várias threads onde cada uma quer fazer algo com o mesmo recurso: criamos uma grande confusão. Para esse tipo de situação, definimos o IPC (Comunicação entre Processos), um conjunto de técnicas que permitem que dois ou mais processos troquem informações de forma coordenada.
+          </p>
+          <p>
+            Analogia com Fórmula 1: cada equipe tem dois carros que precisam constantemente de troca de peças. Os mecânicos têm um <i>canal</i> de comunicação para cada carro, sem atrapalhar a manutenção do outro. Isso é basicamente o IPC.
+          </p>
+          <figure>
+            <img src="img/1.png" alt="Ilustração de IPC">
+            <figcaption>Exemplo visual de comunicação entre processos (IPC).</figcaption>
+          </figure>
+        </section>
+
+        <section>
+          <h2>2. Condição de Corrida</h2>
+          <p>
+            Trata-se de um problema que ocorre quando dois ou mais processos tentam acessar ou manipular um recurso compartilhado. Imagine que existem dois processos acessando a mesma variável <code>x=0</code>, e cada um deseja incrementar seu valor em 1.
+          </p>
+          <p>
+            O resultado esperado seria <code>x=2</code>, mas se ambos acessarem ao mesmo tempo, o valor pode ser atualizado incorretamente e resultar apenas em <code>x=1</code>.
+          </p>
+          <p>
+            Analogia com Fórmula 1: dois carros da mesma equipe chegam ao pit stop ao mesmo tempo, mas há apenas uma equipe de mecânicos disponível. Se não houver coordenação, eles podem se confundir e até colocar pneus do carro 1 no carro 2 ou vice-versa.
+          </p>
+          <figure>
+            <img src="img/2.png" alt="Ilustração de condição de corrida">
+            <figcaption>Dois processos acessando o mesmo recurso ao mesmo tempo.</figcaption>
+          </figure>
+        </section>
+
+        <section>
+          <h2>3. Exclusão Mútua</h2>
+          <p>
+            Exclusão mútua é o mecanismo que garante que apenas um processo acesse um recurso compartilhado por vez, evitando condições de corrida.
+          </p>
+          <p>
+            No exemplo da variável <code>x</code>, se existir um mecanismo que permita apenas um processo acessá-la por vez, teremos a garantia de que o incremento será feito corretamente.
+          </p>
+          <p>
+            Analogia com Fórmula 1: quando duas paradas no pit stop são necessárias, a equipe chama apenas um carro por vez — um entra na volta 10, o outro na volta 11. Isso evita confusão e garante que os mecânicos tenham tempo para preparar o atendimento.
+          </p>
+          <figure>
+            <img src="img/3.png" alt="Exemplo de exclusão mútua">
+            <figcaption>Um processo por vez acessando o recurso compartilhado.</figcaption>
+          </figure>
+        </section>
+
+        <section>
+          <h2>4. Solução via Semáforo</h2>
+          <p>
+            O semáforo é uma das soluções possíveis para implementar exclusão mútua. Ele é uma variável especial associada a uma região crítica que funciona como um sinal, indicando se é seguro ou não acessar um recurso.
+          </p>
+          <p>
+            Analogia com Fórmula 1: após a troca de pneus, quando o carro vai sair do pit stop, há risco de colisão com outro carro na reta dos boxes (região crítica). Para evitar isso, cada pit stop possui uma luz (semáforo) que indica se o piloto pode sair com segurança.
+          </p>
+          <p>
+            Se o piloto não respeitar o semáforo, pode causar uma colisão — assim como processos que acessam recursos sem respeitar a sinalização.
+          </p>
+    
+            <img src="img/4.png" alt="Exemplo de semáforo em exclusão mútua">
+            <figcaption>Semáforo controlando o acesso a uma região crítica.</figcaption>
+          </figure>
+        </section>
+      </article>
+    </section>
+    <a href="index.html" class="btn-troca">Ir para animacao</a>
+
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
