@@ -23,6 +23,7 @@
             <div class="subtitle">CESAR School Project - Software Infrastructure</div>
           </div>
         </section>
+            <a href="index.html" class="btn-troca">Ir para animacao</a>
       </section>
 
 
@@ -30,14 +31,15 @@
         <section>
           <h2>1. IPC</h2>
           <p>
-            IPC são bastante comuns em qualquer computador moderno, na atual filosofia de sistemas operacionais, temos vários processos rodando ao mesmo tempo e dentro de um processo podemos ter várias threads.
+              IPC são bastante comuns em qualquer computador moderno, na atual filosofia de sistema operacionais, temos vários processos rodando ao mesmo tempo e dentro de um processo podemos ter várias threads. Cada processo pode tentar bloquear ou acessar recursos que um outro processo quer usar, imagina quando um mesmo processo tem várias threads onde cada uma que fazer uma coisa com um o mesmo recurso, criamos uma grande confusão. Para esse tipo de situação definimos o IPC ( comunicação entre processos ) , são um conjunto de técnicas que permitem que dois ou mais processos troquem informações de forma coordenada.
           </p>
           <p>
-            Cada processo pode tentar bloquear ou acessar recursos que um outro processo quer usar. Imagine quando um mesmo processo tem várias threads onde cada uma quer fazer algo com o mesmo recurso: criamos uma grande confusão. Para esse tipo de situação, definimos o IPC (Comunicação entre Processos), um conjunto de técnicas que permitem que dois ou mais processos troquem informações de forma coordenada.
+            
+Irei usar bastante analogias com a famosa categoria de automobilismo fórmula 1 para tentar explicar os conceitos de forma mais intuitiva.
+
           </p>
           <p>
-            Analogia com Fórmula 1: cada equipe tem dois carros que precisam constantemente de troca de peças. Os mecânicos têm um <i>canal</i> de comunicação para cada carro, sem atrapalhar a manutenção do outro. Isso é basicamente o IPC.
-          </p>
+            Na fórmula 1 cada equipe tem 2 dois carros que precisam constantemente de troca de peças para seu funcionamento normal. Os mecânicos têm um `` canal `` de comunicação para cada carro para se comunicar sem atrapalhar a manutenção do carro. Isso é basicamente o IPC. 
           <figure>
             <img src="img/1.png" alt="Ilustração de IPC">
             <figcaption>Exemplo visual de comunicação entre processos (IPC).</figcaption>
@@ -47,14 +49,17 @@
         <section>
           <h2>2. Condição de Corrida</h2>
           <p>
-            Trata-se de um problema que ocorre quando dois ou mais processos tentam acessar ou manipular um recurso compartilhado. Imagine que existem dois processos acessando a mesma variável <code>x=0</code>, e cada um deseja incrementar seu valor em 1.
-          </p>
+             De forma não proposital, o segundo conceito tem um nome muito familiar a fórmula 1, condição de corrida
           <p>
-            O resultado esperado seria <code>x=2</code>, mas se ambos acessarem ao mesmo tempo, o valor pode ser atualizado incorretamente e resultar apenas em <code>x=1</code>.
-          </p>
+           Trata-se de um problema que ocorre quando dois ou mais processos tentam acessar ou manipular um recurso compartilhado entre eles. Imagine que existem dois processos acessando o mesmo recursos uma variável x com valor 0 ( x=0 ). Cada processo deseja incrementar seu valor em x+1. Cada processo deseja incrementar o valor da variável em 1.
           <p>
-            Analogia com Fórmula 1: dois carros da mesma equipe chegam ao pit stop ao mesmo tempo, mas há apenas uma equipe de mecânicos disponível. Se não houver coordenação, eles podem se confundir e até colocar pneus do carro 1 no carro 2 ou vice-versa.
+           
+Se ambos os processos tentarem acessar o recursos de forma simultânea, pode haver um problema. Pense que o processo 1 deseja incrementar x em 1 e o processos 2 também deseja incrementar em 1, o resultado esperado de x é 2. Contudo, se ambos acessarem ao mesmo tempo, x pode ser incrementado apenas uma vez
+
           </p>
+
+          <p>Analogia com fórmula 1 : <br>Imagine que dois carros da mesma equipe chegam ao pit stop quase ao mesmo tempo para trocar pneus. O pit stop conta com apenas uma equipe de mecânicos disponível para realizar a troca, ou seja, os mecânicos são um recurso compartilhado entre os dois carros. Se não houver coordenação, os mecânicos podem ficar confusos e atender parcialmente os dois carros. Por exemplo: apesar de raro, já houve casos famosos em que os mecânicos confundiram os carros e acabaram colocando os pneus do carro 1 no carro 2, ou vice-versa.
+</p>
           <figure>
             <img src="img/2.png" alt="Ilustração de condição de corrida">
             <figcaption>Dois processos acessando o mesmo recurso ao mesmo tempo.</figcaption>
@@ -63,15 +68,15 @@
 
         <section>
           <h2>3. Exclusão Mútua</h2>
-          <p>
-            Exclusão mútua é o mecanismo que garante que apenas um processo acesse um recurso compartilhado por vez, evitando condições de corrida.
-          </p>
-          <p>
-            No exemplo da variável <code>x</code>, se existir um mecanismo que permita apenas um processo acessá-la por vez, teremos a garantia de que o incremento será feito corretamente.
-          </p>
-          <p>
-            Analogia com Fórmula 1: quando duas paradas no pit stop são necessárias, a equipe chama apenas um carro por vez — um entra na volta 10, o outro na volta 11. Isso evita confusão e garante que os mecânicos tenham tempo para preparar o atendimento.
-          </p>
+         <p>Bem a situação ilustrada anteriormente é um problema, e todo problema demanda uma solução e para essa solução existe um nome a Exclusão Mútua. 
+É um mecanismo que garante que apenas um processo acesse um recurso compartilhado por vez, evitando as condições de corrida problemáticas.
+Imagine no ex do contador de dois processos, se eu criar um mecanismo que garante que apenas um unicos deles acessem o mecanismo por vez, se essa solução for implementada então teremos a garantia que a variável x será incrementada corretamente.</p>
+
+<p>Existem várias soluções para esse problema, iremos detalhar uma delas mais a frente!<br>Momento da analogia com a Fórmula 1:</p>
+
+<p>
+  Para o mesmo problemas descrevido acima de dois carros quererem entrar no Pit Stop ao mesmo tempo, é bastante comuns as equipes chamarem apenas um piloto para ir ao Pit Stop por vez, basicamente um carro entra na volta 10 e na próxima volta ( a volta 11 ) o outro carro é chamado, isso garante que os mecânicos tenham tempo de se preparar melhor e evitar que sejam comprometidos. 
+</p>
           <figure>
             <img src="img/3.png" alt="Exemplo de exclusão mútua">
             <figcaption>Um processo por vez acessando o recurso compartilhado.</figcaption>
@@ -80,23 +85,30 @@
 
         <section>
           <h2>4. Solução via Semáforo</h2>
-          <p>
-            O semáforo é uma das soluções possíveis para implementar exclusão mútua. Ele é uma variável especial associada a uma região crítica que funciona como um sinal, indicando se é seguro ou não acessar um recurso.
-          </p>
-          <p>
-            Analogia com Fórmula 1: após a troca de pneus, quando o carro vai sair do pit stop, há risco de colisão com outro carro na reta dos boxes (região crítica). Para evitar isso, cada pit stop possui uma luz (semáforo) que indica se o piloto pode sair com segurança.
-          </p>
-          <p>
-            Se o piloto não respeitar o semáforo, pode causar uma colisão — assim como processos que acessam recursos sem respeitar a sinalização.
-          </p>
-    
-            <img src="img/4.png" alt="Exemplo de semáforo em exclusão mútua">
+        <p>É uma das possíveis exclusões mútuas. Um semáforo é uma variável especial atrelada a uma região crítica ( um recurso compartilhado) que funciona como uma espécie de flag, alertando para o processo se é seguro ou não acessar seus recursos por outros processos.
+</p>
+<p>Analogia a fórmula 1:</p>
+
+<p>Falamos bastante sobre carros querendo entrar no pit stop para troca de pneus, mas, de forma análoga, existe um problema semelhante quando um carro deseja sair do pit stop.
+<br><br>Os pit stops ficam em uma longa reta chamada reta dos boxes (Sessão  crítica), que contém diversas zonas com várias ferramentas e mecânicos ( recursos compartilhados  )  para que os pilotos possam trocar partes dos carros durante a corrida.
+</p>
+
+<p>Agora, imagine que um carro deseja sair do seu pit stop após a troca de pneus. Se o carro simplesmente sair, ele pode colidir com outro carro que já havia saído do seu pit stop e estava na reta dos boxes.</p>
+<p>Para resolver esse problema, existe uma solução bem interessante chamada semáforo.
+</p>
+
+<p>
+Cada pit stop possui uma luz para o piloto (processo) que indica se é seguro acessar a reta dos boxes (região crítica).
+
+Se um carro não obedecer o semáforo, ele pode colidir com outro carro (outro processo), causando uma grande confusão.
+
+</p>
+<img src="img/4.png" alt="Exemplo de semáforo em exclusão mútua">
             <figcaption>Semáforo controlando o acesso a uma região crítica.</figcaption>
           </figure>
         </section>
       </article>
     </section>
-    <a href="index.html" class="btn-troca">Ir para animacao</a>
 
   </section>
 
